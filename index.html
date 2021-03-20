@@ -137,7 +137,7 @@
 
   const { ipcRenderer } = require('electron')
   function ipcSend(cmd) {
-     ipcRenderer.sendSync(cmd);
+     ipcRenderer.send(cmd);
   }
 
   function start(id) {
