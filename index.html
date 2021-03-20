@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hello World!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    code {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+    }
+
+    .drag {
+      -webkit-app-region: drag;
+    }
+
+    .header {
+      width: 100%;
+      height: 47px;
+      background-color: #2496ED;
+      box-shadow: 0px 0px 3px #888888;
+      position: absolute;
+      z-index: 99999;
+    }
+
+    .window-control {
+      float: right;
+    }
+
+    .header-icon {
+      padding-left: 5px;
+      padding-right: 5px;
+      padding-top: 4px;
+    }
+
+    body {
+      background-color: #FAFAFB;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    .info-card {
+      background-color: #fff;
+      width: 98%;
+      height: 80px;
+      margin-left: 10px;
+      margin-right: 15px;
+      margin-top: 10px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 1px #888888;
+    }
+
+    .info-card-icon {
+      float: left;
+      margin-left: 5px;
+      margin-top: 5px;
+    }
+
+    .info-card-control {
+      float: right;
+      margin-right: 5px;
+      margin-top: 7px;
+    }
+
+    .icon-pause {
+      margin-bottom: 2px;
+    }
+
+    .icon-stop {
+      margin-bottom: 2px;
+
+    }
+
+    .icon-del {
+      margin-bottom: 5px;
+      margin-left: 3px;
+    }
+
+    .card-box {
+      overflow-y: scroll;
+      height: 550px;
+      width: 100%;
+    }
+
+    .info-card-text {
+      display: inline-block;
+      margin-top: 5px;
+      margin-left: 2px;
+    }
+
+    .card-box::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+  <script src="axios.min.js"></script>
+  
+</head>
+
+<body>
+  <div class="drag header">
+    <a href="javascript:getData();" style="-webkit-app-region: no-drag;">
+      <svg t="1616129565007" class="header-icon" viewBox="0 0 1280 1024" version="1.1"
+        xmlns="http://www.w3.org/2000/svg" p-id="2930" width="38" height="38">
+        <path
+          d="M699.88718 472.6h-132.2v-118.8h132.2v118.8z m0-408.6h-132.2v121.4h132.2V64z m156.4 289.6H724.08718v118.8h132.2v-118.8z m-312.6-144.2h-132.2v120.2h132.2v-120.2z m156.2 0h-132.2v120.2h132.2v-120.2z m553.6 200c-28.8-19.4-95.2-26.4-146.2-16.8-6.6-48-33.4-89.8-82.2-127.4l-28-18.6-18.6 28c-36.8 55.6-46.8 147.2-7.4 207.6-17.4 9.4-51.6 22.2-96.8 21.4H4.88718c-17.4 101.6 11.6 233.6 88 324.2 74.2 87.8 185.4 132.4 330.8 132.4 314.8 0 547.8-145 656.8-408.4 42.8 0.8 135.2 0.2 182.6-90.4 3-5 13.2-26.4 17-34.2l-26.6-17.8z m-1022.2-55.8h-132v118.8h132.2v-118.8z m156.2 0h-132.2v118.8h132.2v-118.8z m156.2 0h-132.2v118.8h132.2v-118.8z m-156.2-144.2h-132.2v120.2h132.2v-120.2z"
+          fill="#ffffff" p-id="2931"></path>
+      </svg>
+    </a>
+    <div class="window-control" style="-webkit-app-region: no-drag;">
+      <a href="javascript:ipcSend('min');" id="min">
+        <svg t="1616129507406" class="header-icon" viewBox="0 0 1024 1024" version="1.1"
+          xmlns="http://www.w3.org/2000/svg" p-id="2403" width="27" height="27">
+          <path
+            d="M195.1 871.4l242.3-242.3 2.2 219.2c0 16.5 13.5 30 30 30s30-13.5 30-30l-2.2-285.1c0-8.8-3.8-16.7-9.8-22.2-5.5-6-13.4-9.8-22.2-9.8H169.8c-16.5 0-30 13.5-30 30s13.5 30 30 30h220.7L152.7 829c-11.7 11.7-11.7 30.8 0 42.4 11.6 11.6 30.7 11.6 42.4 0zM827.3 156.6L585 398.9l-2.2-219.2c0-16.5-13.5-30-30-30s-30 13.5-30 30l2.2 285.1c0 8.8 3.8 16.7 9.8 22.2 5.5 6 13.4 9.8 22.2 9.8h295.6c16.5 0 30-13.5 30-30s-13.5-30-30-30H631.9L869.7 199c11.7-11.7 11.7-30.8 0-42.4-11.7-11.7-30.8-11.7-42.4 0z"
+            p-id="2404" fill="#ffffff"></path>
+        </svg>
+      </a>
+    </div>
+    <div class="card-box" id="info_div"></div>
+</body>
+
+</html>
+<script>
+  var path = 'http://192.168.100.128:6066';
+
+  const { ipcRenderer } = require('electron')
+  function ipcSend(cmd) {
+     ipcRenderer.sendSync(cmd);
+  }
+
+  function start(id) {
+    axios.post(path + `/containers/${id}/start?time=` + new Date().getTime()).then(res => {
+      getData();
+    });
+  };
+  function stop(id) {
+    axios.post(path + `/containers/${id}/stop?time=` + new Date().getTime()).then(res => {
+      getData();
+    });
+  }
+  function kill(id) {
+    axios.post(path + `/containers/${id}/kill?time=` + new Date().getTime()).then(res => {
+      getData();
+    });
+  }
+  function rm(id) {
+    axios.delete(path + `/containers/${id}?force=true&time=` + new Date().getTime()).then(res => {
+      getData();
+    });
+  }
+  function getData() {
+    var infos;
+    axios.get(path + '/containers/json?all=true&time=' + new Date().getTime())
+      .then(res => {
+        infos = res.data;
+        var tml = '';
+        for (var i = 0; i < infos.length; i++) {
+          var info = infos[i];
+          tml += `
+      <div class= "info-card">
+      <svg t="1616130027944" class="info-card-icon" viewBox="0 0 1280 1024" version="1.1"
+        xmlns="http://www.w3.org/2000/svg" p-id="3243" width="65" height="65">
+        <path
+          d="M699.88718 472.6h-132.2v-118.8h132.2v118.8z m0-408.6h-132.2v121.4h132.2V64z m156.4 289.6H724.08718v118.8h132.2v-118.8z m-312.6-144.2h-132.2v120.2h132.2v-120.2z m156.2 0h-132.2v120.2h132.2v-120.2z m553.6 200c-28.8-19.4-95.2-26.4-146.2-16.8-6.6-48-33.4-89.8-82.2-127.4l-28-18.6-18.6 28c-36.8 55.6-46.8 147.2-7.4 207.6-17.4 9.4-51.6 22.2-96.8 21.4H4.88718c-17.4 101.6 11.6 233.6 88 324.2 74.2 87.8 185.4 132.4 330.8 132.4 314.8 0 547.8-145 656.8-408.4 42.8 0.8 135.2 0.2 182.6-90.4 3-5 13.2-26.4 17-34.2l-26.6-17.8z m-1022.2-55.8h-132v118.8h132.2v-118.8z m156.2 0h-132.2v118.8h132.2v-118.8z m156.2 0h-132.2v118.8h132.2v-118.8z m-156.2-144.2h-132.2v120.2h132.2v-120.2z"
+          fill=${info.State == 'running' ? "#1296db" : "#ff0000"} p-id="3244"></path>
+      </svg>
+      <div class="info-card-control">
+        ${info.State != 'running' ?
+              `
+          <a href="javascript:start('${info.Id}');">
+            <svg t="1616131174827" class="info-card-control-icon" viewBox="0 0 1024 1024" version="1.1"
+              xmlns="http://www.w3.org/2000/svg" p-id="4500" width="60" height="60">
+              <path
+                d="M512 85.333333c235.648 0 426.666667 191.018667 426.666667 426.666667s-191.018667 426.666667-426.666667 426.666667S85.333333 747.648 85.333333 512 276.352 85.333333 512 85.333333z m0 64C311.701333 149.333333 149.333333 311.701333 149.333333 512s162.368 362.666667 362.666667 362.666667 362.666667-162.368 362.666667-362.666667S712.298667 149.333333 512 149.333333z m-64 192.064a21.333333 21.333333 0 0 1 12.821333 4.266667l199.104 149.717333a21.333333 21.333333 0 0 1-0.042666 34.133334L460.8 678.485333A21.333333 21.333333 0 0 1 426.666667 661.397333v-298.666666a21.333333 21.333333 0 0 1 21.333333-21.333334z"
+                fill="#008A17" p-id="4501"></path>
+            </svg>
+          </a>`:
+              `
+          <a href="javascript:stop('${info.Id}');">
+            <svg t="1616131166519" class="info-card-control-icon icon-pause" viewBox="0 0 1024 1024" version="1.1"
+              xmlns="http://www.w3.org/2000/svg" p-id="4328" width="57" height="57">
+              <path
+                d="M416 720c-17.67 0-32-14.33-32-32V336c0-17.67 14.33-32 32-32s32 14.33 32 32v352c0 17.67-14.33 32-32 32zM608 720c-17.67 0-32-14.33-32-32V336c0-17.67 14.33-32 32-32s32 14.33 32 32v352c0 17.67-14.33 32-32 32z"
+                p-id="4329" fill="#d4237a"></path>
+              <path
+                d="M512 128c211.74 0 384 172.26 384 384S723.74 896 512 896 128 723.74 128 512s172.26-384 384-384m0-64C264.58 64 64 264.58 64 512s200.58 448 448 448 448-200.58 448-448S759.42 64 512 64z"
+                p-id="4330" fill="#d4237a"></path>
+            </svg>
+          </a>`
+            }
+        <a href="javascript:kill('${info.Id}');">
+          <svg t="1616131326465" class="info-card-control-icon icon-stop" viewBox="0 0 1024 1024" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" p-id="1761" width="57" height="57">
+            <path
+              d="M512 967.111111c-250.311111 0-455.111111-204.8-455.111111-455.111111s204.8-455.111111 455.111111-455.111111 455.111111 204.8 455.111111 455.111111-204.8 455.111111-455.111111 455.111111z m0-56.888889c221.866667 0 398.222222-176.355556 398.222222-398.222222s-176.355556-398.222222-398.222222-398.222222-398.222222 176.355556-398.222222 398.222222 176.355556 398.222222 398.222222 398.222222z"
+              fill="#13227a" p-id="1762"></path>
+            <path d="M341.333333 341.333333h341.333334v341.333334H341.333333z" fill="#13227a" p-id="1763"></path>
+          </svg>
+        </a>
+        <a href="javascript:rm('${info.Id}');">
+          <svg t="1616131272613" class="info-card-control-icon icon-del" viewBox="0 0 1024 1024" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" p-id="15115" width="50" height="50">
+            <path
+              d="M512 64c60.5 0 119.2 11.8 174.4 35.2 53.3 22.6 101.3 54.9 142.4 96 41.2 41.2 73.5 89.1 96 142.4C948.2 392.8 960 451.5 960 512s-11.8 119.2-35.2 174.4c-22.6 53.3-54.9 101.3-96 142.4-41.2 41.2-89.1 73.5-142.4 96C631.2 948.2 572.5 960 512 960s-119.2-11.8-174.4-35.2c-53.3-22.6-101.3-54.9-142.4-96-41.2-41.2-73.5-89.1-96-142.4C75.8 631.2 64 572.5 64 512s11.8-119.2 35.2-174.4c22.6-53.3 54.9-101.3 96-142.4s89.1-73.5 142.4-96C392.8 75.8 451.5 64 512 64m0-64C229.2 0 0 229.2 0 512s229.2 512 512 512 512-229.2 512-512S794.8 0 512 0z"
+              p-id="15116" fill="#d81e06"></path>
+            <path
+              d="M724.1 345.1l-379 379c-12.4 12.4-32.8 12.4-45.3 0-12.4-12.4-12.4-32.8 0-45.3l379-379c12.4-12.4 32.8-12.4 45.3 0 12.5 12.5 12.5 32.9 0 45.3z"
+              p-id="15117" fill="#d81e06"></path>
+            <path
+              d="M345.1 299.9l379 379c12.4 12.4 12.4 32.8 0 45.3-12.4 12.4-32.8 12.4-45.3 0l-379-379c-12.4-12.4-12.4-32.8 0-45.3 12.5-12.5 32.9-12.5 45.3 0z"
+              p-id="15118" fill="#d81e06"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="info-card-text">
+        <text><strong>名称</strong>:${info.Names}</text><br/>
+        <text><strong>ID</strong>:${info.Id.substr(0, 12)}</text><br/>
+        <text><strong>镜像</strong>:${info.Image}</text>
+      </div>
+    </div>
+      `
+        }
+        document.getElementById('info_div').innerHTML = tml;
+
+      }
+      );
+
+
+  }
+</script>
+<script>getData()</script>
