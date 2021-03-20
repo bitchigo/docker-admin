@@ -1,5 +1,7 @@
 # 一个docker可视化客户端
 
+![](README.img/show.png)
+
 # 安装依赖
 
 npm install
